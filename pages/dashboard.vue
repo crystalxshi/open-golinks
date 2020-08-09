@@ -99,20 +99,19 @@ export default class DashboardPage extends Vue {
         if (lockedUrl) {
           charts.forEach(function(chart) {
             chart.set({
-              query: { filters: `ga:pagePathLevel1=~^/${lockedUrl}$;ga:pagePathLevel1!@\?` }
+              query: { filters: `ga:pagePathLevel1=~^/${lockedUrl}$` }
             })
           })
         } else if (reg) {
           charts.forEach(function(chart) {
-            chart.set({ query: { filters: `ga:pagePathLevel1=~${reg};ga:pagePathLevel1!@\?` } })
+            chart.set({ query: { filters: `ga:pagePathLevel1=~${reg}` } })
           })
         } else {
           charts.forEach(function(chart) {
-            chart.set({ query: { filters: 'ga:pagePathLevel1!=/;ga:pagePathLevel1!@\?' } })
+            chart.set({ query: { filters: 'ga:pagePathLevel1!=/' } })
           })
         }
         charts.forEach(function(chart) {
-          
           chart.execute()
         })
       }
